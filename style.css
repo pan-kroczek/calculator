@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
+body {
+    background-color: #ADA0A0;
+    margin: 0;
+    padding-top: 40px;
+}
+
+#calc-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-sizing: border-box;
+    width: 320px;
+    height: 492px;
+    background-color: #B3A5A5;
+    outline: 2px solid #7E7E7E;
+    outline-offset: -2px;
+    border-radius: 32px;
+    margin: 0px auto 0px auto;
+    box-shadow:0px 8px 72px rgba(0,0,0,0.2);
+    padding: 24px 24px 40px 24px;
+}
+
+#result {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    box-sizing: border-box;
+    padding-right: 25px;
+    border-radius: 20px;
+    flex-grow: 1;
+    max-height: 62px;
+    background-color: #2F2F2F;
+    outline: 2px solid #7E7E7E;
+    outline-offset: -2px;
+}
+
+#result p {
+    font-family: 'Source Code Pro', sans-serif;
+    font-size: 24px;
+    color: #14FD05;
+}
+
+#buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+button {
+    font-family: 'Source Code Pro', sans-serif;
+    font-size: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    box-sizing: border-box;
+    width: 62px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    border-radius: 20px;
+    border: none;
+    box-shadow:0px 2px 2px rgba(0,0,0,0.4);
+}
+
+button:active {
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.operators {
+    font-weight: bold;
+    background-color: #0DA237;
+    color: white;
+}
+
+.top {
+    font-weight: bold;
+    background-color: #7B7B7B;
+    color: white;
+}
+
+#random {
+    font-size: 12px;
+}
+
+.number {
+    background-color: #A59191;
+}
