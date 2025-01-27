@@ -22,9 +22,12 @@ function divide(num1, num2) {
 
 console.log(divide(4, 2));
 
-const result = document.querySelector('#result');
+var firstNumber;
+var operator;
+var secondNumber;
+var equation = '';
 
-result.textContent = '';
+const result = document.querySelector('#result');
 
 const buttons = document.querySelector('#buttons');
 
@@ -36,11 +39,15 @@ buttons.addEventListener('click', (event) => {
     }
   
     result.textContent += event.target.value;
-    console.log(event.target.value);
+    equation = result.textContent;
+    console.log(equation);
   });
 
-const clearScreen = document.querySelector('#clear');
+const clear = document.querySelector('#clear');
 
-clearScreen.addEventListener('click', () => {
+function clearScreen() {
     result.textContent = '';
-});
+    equation = '';
+}
+
+clear.addEventListener('click', clearScreen);
