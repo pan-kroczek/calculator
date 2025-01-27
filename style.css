@@ -22,7 +22,7 @@ body {
     padding: 24px 24px 40px 24px;
 }
 
-#result {
+#screen {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -30,13 +30,13 @@ body {
     padding-right: 25px;
     border-radius: 20px;
     flex-grow: 1;
-    max-height: 62px;
+    height: 62px;
     background-color: #2F2F2F;
     outline: 2px solid #7E7E7E;
     outline-offset: -2px;
 }
 
-#result p {
+#result {
     font-family: 'Source Code Pro', sans-serif;
     font-size: 24px;
     color: #14FD05;
@@ -70,13 +70,13 @@ button:active {
     transform: translateY(2px);
 }
 
-.operators {
+.operator {
     font-weight: bold;
     background-color: #0DA237;
     color: white;
 }
 
-.top {
+.option {
     font-weight: bold;
     background-color: #7B7B7B;
     color: white;
