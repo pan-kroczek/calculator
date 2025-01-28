@@ -65,15 +65,21 @@ button {
     box-shadow:0px 2px 2px rgba(0,0,0,0.4);
 }
 
-button:active {
+button:active,
+button:disabled {
     box-shadow: none;
     transform: translateY(2px);
 }
 
 .operator {
-    font-weight: bold;
+    font-weight: 600;
     background-color: #0DA237;
     color: white;
+}
+
+.operator:active,
+.operator:disabled {
+    background-color: #0C802D;
 }
 
 .option {
@@ -82,10 +88,18 @@ button:active {
     color: white;
 }
 
+.option:active {
+    background-color: #666666;
+}
+
 #zero {
     width: 132px;
 }
 
 .number {
     background-color: #A59191;
+}
+
+.number:active {
+    background-color: #978282;
 }
