@@ -40,6 +40,8 @@ body {
     font-family: 'Source Code Pro', sans-serif;
     font-size: 24px;
     color: #14FD05;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #buttons {

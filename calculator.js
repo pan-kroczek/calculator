@@ -25,7 +25,7 @@ const addButton = buttons.querySelector('#add');
 const subtractButton = buttons.querySelector('#subtract');
 const multiplyButton = buttons.querySelector('#multiply');
 const divideButton = buttons.querySelector('#divide');
-const equalButton = buttons.querySelector('#equals');
+const equalsButton = buttons.querySelector('#equals');
 
 // buttons.addEventListener('click', (event) => {
 //     const isNumber = event.target.className === 'number';
@@ -49,6 +49,9 @@ buttons.addEventListener('click', (event) => {
     currentNumber = result.textContent;
     console.log(currentNumber);
     addButton.disabled = false;
+    subtractButton.disabled = false;
+    multiplyButton.disabled = false;
+    divideButton.disabled = false;
   });
 
 addButton.addEventListener('click', (event) => {
@@ -64,7 +67,46 @@ addButton.addEventListener('click', (event) => {
     addButton.disabled = true;
   });
 
-  equalButton.addEventListener('click', () => {
+  subtractButton.addEventListener('click', (event) => {
+    if (firstNumber === undefined) {
+        firstNumber = Number(currentNumber);
+    } else {
+        firstNumber = subtract(firstNumber, Number(currentNumber));
+    }
+    clearScreen();
+    operator = '-';
+    console.log(firstNumber);
+    console.log(operator);
+    subtractButton.disabled = true;
+  });
+
+  multiplyButton.addEventListener('click', (event) => {
+    if (firstNumber === undefined) {
+        firstNumber = Number(currentNumber);
+    } else {
+        firstNumber = multiply(firstNumber, Number(currentNumber));
+    }
+    clearScreen();
+    operator = '*';
+    console.log(firstNumber);
+    console.log(operator);
+    multiplyButton.disabled = true;
+  });
+
+  divideButton.addEventListener('click', (event) => {
+    if (firstNumber === undefined) {
+        firstNumber = Number(currentNumber);
+    } else {
+        firstNumber = divide(firstNumber, Number(currentNumber));
+    }
+    clearScreen();
+    operator = '/';
+    console.log(firstNumber);
+    console.log(operator);
+    divideButton.disabled = true;
+  });
+
+  equalsButton.addEventListener('click', () => {
     if (firstNumber === undefined) {
         return;
     } else if (operator === '+') {
@@ -74,12 +116,15 @@ addButton.addEventListener('click', (event) => {
     } else if (operator === '-') {
         secondNumber = Number(currentNumber);
         result.textContent = `${subtract(firstNumber, secondNumber)}`;
+        subtractButton.disabled = false;
     } else if (operator === '*') {
         secondNumber = Number(currentNumber);
         result.textContent = `${multiply(firstNumber, secondNumber)}`;
+        multiplyButton.disabled = false;
     } else if (operator === '/') {
         secondNumber = Number(currentNumber);
         result.textContent = `${divide(firstNumber, secondNumber)}`;
+        divideButton.disabled = false;
     }
   });
 
@@ -94,4 +139,8 @@ clear.addEventListener('click', () => {
     clearScreen();
     firstNumber = undefined;
     operator = undefined;
+    addButton.disabled = false;
+    subtractButton.disabled = false;
+    multiplyButton.disabled = false;
+    divideButton.disabled = false;
 });
