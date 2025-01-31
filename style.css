@@ -3,7 +3,7 @@
 body {
     background-color: #ADA0A0;
     margin: 0;
-    padding-top: 40px;
+    padding-top: 144px;
 }
 
 #calc-container {
@@ -73,7 +73,8 @@ button:disabled {
     transform: translateY(2px);
 }
 
-.operator {
+.operator,
+.equals {
     font-weight: 600;
     background-color: #0DA237;
     color: white;
