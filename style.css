@@ -22,7 +22,7 @@ body {
     padding: 24px 24px 40px 24px;
 }
 
-#screen {
+#screen-container {
     display: flex;
     justify-content: end;
     align-items: center;
@@ -36,7 +36,7 @@ body {
     outline-offset: -2px;
 }
 
-#result {
+#screen {
     font-family: 'Source Code Pro', sans-serif;
     font-size: 24px;
     color: #14FD05;

@@ -17,130 +17,141 @@ function divide(num1, num2) {
 var firstNumber;
 var operator;
 var secondNumber;
-var currentNumber = '';
+var result;
 
-const result = document.querySelector('#result');
+const screen = document.querySelector('#screen');
 const buttons = document.querySelector('#buttons');
+const allNumberButtons = buttons.querySelectorAll('.number');
 const addButton = buttons.querySelector('#add');
 const subtractButton = buttons.querySelector('#subtract');
 const multiplyButton = buttons.querySelector('#multiply');
 const divideButton = buttons.querySelector('#divide');
 const equalsButton = buttons.querySelector('#equals');
-
-// buttons.addEventListener('click', (event) => {
-//     const isNumber = event.target.className === 'number';
-//     const isOperator = event.target.className === 'operator';
-//     if (!isNumber && !isOperator) {
-//       return;
-//     }
-  
-//     result.textContent += event.target.value;
-//     currentNumber = result.textContent;
-//     console.log(currentNumber);
-//   });
+const percentageButton = buttons.querySelector('#percent');
 
 buttons.addEventListener('click', (event) => {
     const isNumber = event.target.className === 'number';
     if (!isNumber) {
-      return;
+        return;
     }
-    
-    result.textContent += event.target.value;
-    currentNumber = result.textContent;
-    console.log(currentNumber);
+
+    screen.textContent += event.target.value;
     addButton.disabled = false;
     subtractButton.disabled = false;
     multiplyButton.disabled = false;
     divideButton.disabled = false;
-  });
+});
 
 addButton.addEventListener('click', (event) => {
     if (firstNumber === undefined) {
-        firstNumber = Number(currentNumber);
+        firstNumber = Number(screen.textContent);
+        result = firstNumber;
     } else {
-        firstNumber = add(firstNumber, Number(currentNumber));
+        firstNumber = result;
+        secondNumber = Number(screen.textContent);
+        result = add(firstNumber, secondNumber);
     }
-    clearScreen();
+
+    screen.textContent = '';
+
     operator = '+';
-    console.log(firstNumber);
-    console.log(operator);
     addButton.disabled = true;
   });
 
   subtractButton.addEventListener('click', (event) => {
     if (firstNumber === undefined) {
-        firstNumber = Number(currentNumber);
+        firstNumber = Number(screen.textContent);
+        result = firstNumber;
     } else {
-        firstNumber = subtract(firstNumber, Number(currentNumber));
+        firstNumber = result;
+        secondNumber = Number(screen.textContent);
+        result = subtract(firstNumber, secondNumber);
     }
-    clearScreen();
+
+    screen.textContent = '';
+
     operator = '-';
-    console.log(firstNumber);
-    console.log(operator);
     subtractButton.disabled = true;
   });
 
   multiplyButton.addEventListener('click', (event) => {
     if (firstNumber === undefined) {
-        firstNumber = Number(currentNumber);
+        firstNumber = Number(screen.textContent);
+        result = firstNumber;
     } else {
-        firstNumber = multiply(firstNumber, Number(currentNumber));
+        firstNumber = result;
+        secondNumber = Number(screen.textContent);
+        result = multiply(firstNumber, secondNumber);
     }
-    clearScreen();
+
+    screen.textContent = '';
+
     operator = '*';
-    console.log(firstNumber);
-    console.log(operator);
     multiplyButton.disabled = true;
   });
 
   divideButton.addEventListener('click', (event) => {
     if (firstNumber === undefined) {
-        firstNumber = Number(currentNumber);
+        firstNumber = Number(screen.textContent);
+        result = firstNumber;
     } else {
-        firstNumber = divide(firstNumber, Number(currentNumber));
+        firstNumber = result;
+        secondNumber = Number(screen.textContent);
+        result = divide(firstNumber, secondNumber);
     }
-    clearScreen();
+
+    screen.textContent = '';
+
     operator = '/';
-    console.log(firstNumber);
-    console.log(operator);
     divideButton.disabled = true;
+  });
+
+  percentageButton.addEventListener('click', () => {
+    firstNumber = Number(currentNumber) * 0.01;
+    result.textContent = `${firstNumber}`;
   });
 
   equalsButton.addEventListener('click', () => {
     if (firstNumber === undefined) {
         return;
     } else if (operator === '+') {
-        secondNumber = Number(currentNumber);
-        result.textContent = `${add(firstNumber, secondNumber)}`;
+        firstNumber = result;
+        secondNumber = Number(screen.textContent);
+        result = add(firstNumber, secondNumber);
         addButton.disabled = false;
     } else if (operator === '-') {
-        secondNumber = Number(currentNumber);
-        result.textContent = `${subtract(firstNumber, secondNumber)}`;
+        firstNumber = result;
+        secondNumber = Number(screen.textContent);
+        result = subtract(firstNumber, secondNumber);
         subtractButton.disabled = false;
     } else if (operator === '*') {
-        secondNumber = Number(currentNumber);
-        result.textContent = `${multiply(firstNumber, secondNumber)}`;
+        firstNumber = result;
+        secondNumber = Number(screen.textContent);
+        result = multiply(firstNumber, secondNumber);
         multiplyButton.disabled = false;
     } else if (operator === '/') {
-        secondNumber = Number(currentNumber);
-        result.textContent = `${divide(firstNumber, secondNumber)}`;
+        firstNumber = result;
+        secondNumber = Number(screen.textContent);
+        result = divide(firstNumber, secondNumber);
         divideButton.disabled = false;
     }
+
+    console.log(result);
+    screen.textContent = `${result}`;
+
+    allNumberButtons.forEach((button) => button.disabled = true);
   });
 
 const clear = document.querySelector('#clear');
 
-function clearScreen() {
-    result.textContent = '';
-    currentNumber = '';
-}
-
 clear.addEventListener('click', () => {
-    clearScreen();
+    screen.textContent = '';
     firstNumber = undefined;
+    secondNumber = undefined;
     operator = undefined;
     addButton.disabled = false;
     subtractButton.disabled = false;
     multiplyButton.disabled = false;
     divideButton.disabled = false;
+    allNumberButtons.forEach((button) => button.disabled = false);
 });
