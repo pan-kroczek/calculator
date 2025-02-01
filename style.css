@@ -99,7 +99,8 @@ button:disabled {
     width: 132px;
 }
 
-.number {
+.number,
+.point {
     background-color: #A59191;
 }
 

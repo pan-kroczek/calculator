@@ -45,6 +45,7 @@ const allOperatorButtons = buttons.querySelectorAll('.operator');
 const equalsButton = buttons.querySelector('#equals');
 const clearButton = buttons.querySelector('#clear');
 const percentButton = buttons.querySelector('#percent');
+const pointButton = buttons.querySelector('#point');
 
 allNumberButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -60,12 +61,15 @@ allNumberButtons.forEach((button) => {
 
 allOperatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
+        operator = button.value;
+
         if (firstNumber === undefined) {
             firstNumber = Number(screen.textContent);
         } else if (equalsClicked === true) {
             secondNumber = 0;
             equalsClicked = false;
         } else if (operator === '/' && secondNumber === 0) {
+            console.log()
             screen.textContent = '3RR0R';
             return;
         } else {
@@ -73,25 +77,25 @@ allOperatorButtons.forEach((button) => {
             firstNumber = operate(firstNumber, secondNumber);
         }
 
-        operator = button.value;
         screen.textContent = '';
+        pointButton.disabled = false;
     });
 });
 
 equalsButton.addEventListener('click', () => {
     secondNumber = Number(screen.textContent);
 
-    if (firstNumber === undefined || screen.textContent === '3RR0R') {
+    if (firstNumber === undefined || screen.textContent === '3RR0R' || equalsClicked === true) {
         return;
     } else if (operator === '/' && secondNumber === 0) {
         screen.textContent = '3RR0R';
+        equalsClicked = true;
         return;
+    } else {
+        screen.textContent = `${Math.round(operate(firstNumber, secondNumber) * 1000000) / 1000000}`;
+        firstNumber = Number(screen.textContent);
+        equalsClicked = true;
     }
-
-
-    screen.textContent = `${operate(firstNumber, secondNumber)}`;
-    firstNumber = Number(screen.textContent);
-    equalsClicked = true;
 });
 
 clearButton.addEventListener('click', clearScreen);
@@ -103,4 +107,14 @@ percentButton.addEventListener('click', () => {
         firstNumber = firstNumber * 0.01;
         screen.textContent = firstNumber;
     }
+});
+
+pointButton.addEventListener('click', (e) => {
+    if (screen.textContent === '') {
+        screen.textContent = '0.';
+    } else {
+        screen.textContent += e.target.value;
+    }
+
+    e.target.disabled = true;
 });
