@@ -31,13 +31,6 @@ function operate(num1, num2) {
     }
 };
 
-function clearScreen() {
-    firstNumber = undefined;
-    secondNumber = undefined;
-    operator = '';
-    screen.textContent = '';
-}
-
 const screen = document.querySelector('#screen');
 const buttons = document.querySelector('#buttons');
 const allNumberButtons = buttons.querySelectorAll('.number');
@@ -46,6 +39,14 @@ const equalsButton = buttons.querySelector('#equals');
 const clearButton = buttons.querySelector('#clear');
 const percentButton = buttons.querySelector('#percent');
 const pointButton = buttons.querySelector('#point');
+
+function clearScreen() {
+    firstNumber = undefined;
+    secondNumber = undefined;
+    operator = '';
+    screen.textContent = '';
+    pointButton.disabled = false;
+}
 
 allNumberButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -92,10 +93,12 @@ equalsButton.addEventListener('click', () => {
         equalsClicked = true;
         return;
     } else {
-        screen.textContent = `${Math.round(operate(firstNumber, secondNumber) * 1000000) / 1000000}`;
+        screen.textContent = `${Math.round(operate(firstNumber, secondNumber) * 1000) / 1000}`;
         firstNumber = Number(screen.textContent);
         equalsClicked = true;
     }
+
+    pointButton.disabled = true;
 });
 
 clearButton.addEventListener('click', clearScreen);
@@ -112,6 +115,7 @@ percentButton.addEventListener('click', () => {
 pointButton.addEventListener('click', (e) => {
     if (screen.textContent === '') {
         screen.textContent = '0.';
+        equalsClicked = false;
     } else {
         screen.textContent += e.target.value;
     }
